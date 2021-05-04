@@ -1,6 +1,4 @@
-FROM node:10
-
-RUN mkdir /client
+FROM node:16
 
 WORKDIR /client
 
@@ -12,6 +10,6 @@ RUN yarn global add @quasar/cli
 
 COPY package*.json ./client
 
-COPY . /client/
+COPY . /client
 
-EXPOSE 8000
+CMD ["yarn", "quasar", "dev"]

@@ -1,17 +1,16 @@
 version: "3.9"
    
 services:
-  db:
-    image: postgres
-    restart: unless-stopped
+  client:
+    build:
+      context: ./client/
     volumes:
-      - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=myproject
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=password
+      - ./client:/client
+      - /client/node_modules
     ports:
-      - 5432:5432
+      - 8080:8080
+    depends_on:
+      - api
 
   api:
     build: ./api/
@@ -23,11 +22,14 @@ services:
     depends_on:
       - db
 
-  client:
-    build: ./client/
+  db:
+    image: postgres
+    restart: unless-stopped
     volumes:
-      - ./client:/client
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=myproject
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=password
     ports:
-      - 8080:8080
-    depends_on:
-      - api
+      - 5432:5432
