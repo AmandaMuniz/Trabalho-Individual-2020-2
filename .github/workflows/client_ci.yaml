@@ -27,10 +27,4 @@ jobs:
         run: |
           yarn install
           yarn lint
-      - name: Coverage
-        uses: paambaati/codeclimate-action@v2.7.5
-        env:
-          CC_TEST_REPORTER_ID: a62422ecf29b56b7ad5e56d69443c5b268664ae894f867e7c81d0acaf03df621
-        with:
-          coverageCommand: yarn test:unit:coverage
-          debug: true
+          yarn test:unit:coverage
