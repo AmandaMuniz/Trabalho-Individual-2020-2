@@ -11,14 +11,12 @@ on:
       - "client/**"
 
 jobs:
+
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [16.x]
-
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }} lint, test and coverage
@@ -29,4 +27,38 @@ jobs:
         run: |
           yarn install
           yarn lint
-          yarn test:unit:coverage
+
+  test: 
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - name: test/node ${{ matrix.node-version }}/ ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install
+    - run: yarn build
+    - run: yarn test
+
+  coverage:
+    needs: [ test ]
+    name: coverage
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: [16.x]
+    - run: yarn install
+    - run: yarn build
+    - uses: paambaati/codeclimate-action@v2.7.5
+    - name: Code Climate Coverage Action
+      env:
+        CC_TEST_REPORTER_ID: a62422ecf29b56b7ad5e56d69443c5b268664ae894f867e7c81d0acaf03df621
+      with:
+        coverageCommand: yarn test:unit:coverage
+        debug: true
