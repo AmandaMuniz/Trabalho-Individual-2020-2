@@ -8,6 +8,8 @@ WORKDIR /api
 
 ADD . /api/
 
+RUN python -m pip install --upgrade pip
+
 COPY requirements.txt /api/
 
 EXPOSE 8000
