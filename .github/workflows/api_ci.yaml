@@ -77,7 +77,7 @@ jobs:
       - needs: [ build ]
         run: |
           sudo apt-get -yqq install libpq-dev
-          pip3 install -r ./requirements.txt
-          python ./manage.py migrate
-          coverage run ./manage.py test
-      working-directory: api
+          pip3 install -r requirements.txt
+          python manage.py migrate
+          coverage run manage.py test
+        working-directory: api
