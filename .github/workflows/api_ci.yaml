@@ -35,11 +35,11 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
         
     - name: Run Tests
-        run: python manage.py test
-        working-directory: api
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: github-actions
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
+    - run: python manage.py test
+      working-directory: api
+      env:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: github-actions
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: 5432
