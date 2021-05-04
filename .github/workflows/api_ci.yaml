@@ -92,14 +92,15 @@ jobs:
     name: coverage
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
-      with:
-        python-version: "3.x"
-      - run: pip install -r requirements.txt
-      - run: python manage.py migrate
-    - uses: paambaati/codeclimate-action@v2.7.5
     - name: Code Climate Coverage Action
+    - uses: actions/checkout@master
+    - name: Coverage Settings
+    - uses: actions/setup-node@master
+    - name: Setting api
+    - run: pip install -r requirements.txt
+    - run: python manage.py migrate
+    - name: Calculating coverage
+    - uses: paambaati/codeclimate-action@v2.7.5
       env:
         CC_TEST_REPORTER_ID: a62422ecf29b56b7ad5e56d69443c5b268664ae894f867e7c81d0acaf03df621
       with:
