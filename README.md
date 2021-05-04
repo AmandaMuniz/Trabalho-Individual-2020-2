@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/AmandaMuniz/Trabalho-Individual-2020-2.svg?branch=master)](https://travis-ci.org/AmandaMuniz/Trabalho-Individual-2020-2)
+
 # Trabalho Individual 2020.2
 
 
