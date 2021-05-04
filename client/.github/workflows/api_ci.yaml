@@ -1,0 +1,45 @@
+name: API CI
+
+on: 
+  push:
+    branches: [master]
+    paths:
+      - "api/**"
+  pull_request:
+    branches: [master]
+    paths:
+      - "api/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgress:
+        image: postgres
+        env:
+          POSTGRES_DB=myproject
+          POSTGRES_USER=myuser
+          POSTGRES_PASSWORD=password
+        ports:
+          - 5432:5432
+    
+    steps:
+    - uses: docker-compose up -d api
+    - name: Builds API
+
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        
+    - name: Run Tests
+        run: python manage.py test
+        working-directory: api
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: github-actions
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
