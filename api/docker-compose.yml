@@ -3,17 +3,21 @@ version: "3.9"
 services:
   db:
     image: postgres
+    restart: unless-stopped
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=myproject
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=password
+    expose:
+      - "5432"
+
   api:
-    build: .
+    build: ./api/
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/api
+      - ./api:/api
     ports:
       - "8000:8000"
     depends_on:
