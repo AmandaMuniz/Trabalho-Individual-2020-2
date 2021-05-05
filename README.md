@@ -16,21 +16,22 @@
 
 O resultado do build do docker foi:
 
-![terminal](https://ibb.co/HzSJRrg)
+![image](https://user-images.githubusercontent.com/22080321/117090945-296d5a80-ad30-11eb-9b7e-fa0a5a58b8c3.png)
 
 ### 2. Integração contínua
 
 A integração contínua foi feita utilizando a ferramenta Github Actions para a pipeline.
 
-![pipeline](https://ibb.co/9yPcvYw)
+![image](https://user-images.githubusercontent.com/22080321/117090927-1ce90200-ad30-11eb-9c63-a2767b297933.png)
+
 
 Foi utlizado o Code Climate para verificar dados de qualidade sobre o código
 
-![codeclimate](https://ibb.co/GdvBtS0)
+![image](https://user-images.githubusercontent.com/22080321/117090997-499d1980-ad30-11eb-98a0-f65c13f7669a.png)
 
 Além disso, para a utilização de mais métricas foi utilizado o SonarCloud
 
-![sonarcloud](https://ibb.co/DGyRmhD)
+![image](https://user-images.githubusercontent.com/22080321/117091014-56217200-ad30-11eb-90db-2bc6a17e2243.png)
 
 A relação final de ferramentas utilizadas foi:
 
