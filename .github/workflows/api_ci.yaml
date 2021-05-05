@@ -4,11 +4,11 @@ on:
   push:
     branches: [master]
     paths:
-      - "client/**"
+      - "api/**"
   pull_request:
     branches: [master]
     paths:
-      - "client/**"
+      - "api/**"
 
 jobs:
   health-check-job:
@@ -24,26 +24,26 @@ jobs:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
-      - name: Verificacao Codigo
+      - name: Checkout code
         uses: actions/checkout@v2
-      - name: Depedencia Cache
+      - name: Cache dependency
         uses: actions/cache@v2
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-      - name: Config Ambiente Python
+      - name: Setup python environment
         uses: actions/setup-python@v2
         with:
           python-version: "3.x"
-      - name: Versionamento Python
+      - name: Check Python version
         run: python --version
         working-directory: api
-      - name: Instalacao requirements
+      - name: Install requirements
         run: pip install -r requirements.txt
         working-directory: api
-      - name: Migracoes
+      - name: Run Migrations
         run: python manage.py migrate
         working-directory: api
         env:
@@ -52,7 +52,7 @@ jobs:
           POSTGRES_DB: github-actions
           POSTGRES_HOST: localhost
           POSTGRES_PORT: 5432
-      - name: Tests
+      - name: Run Test
         run: python manage.py test
         working-directory: api
         env:
@@ -60,4 +60,4 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: github-actions
           POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
+          POSTGRES_PORT: 5432 
