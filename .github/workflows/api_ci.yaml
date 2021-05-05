@@ -59,6 +59,7 @@ jobs:
           POSTGRES_PORT: 5432
       - name: Run Test
         run: python manage.py test
+        run: coverage run manage.py test
         working-directory: api
         env:
           POSTGRES_USER: postgres
@@ -66,9 +67,3 @@ jobs:
           POSTGRES_DB: github-actions
           POSTGRES_HOST: localhost
           POSTGRES_PORT: 5432
-      - name: Coverage
-        run: |
-          pip3 install -r requirements.txt
-          python manage.py migrate
-          coverage run manage.py test
-        working-directory: api  
