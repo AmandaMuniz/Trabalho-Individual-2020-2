@@ -10,9 +10,9 @@
 
 ## 1. Containerização
 
-[Dockerfile API](https://github.com/AmandaMuniz/Trabalho-Individual-2020-2/blob/master/api/Dockerfile)
-[Dockerfile Client](https://github.com/AmandaMuniz/Trabalho-Individual-2020-2/blob/master/client/Dockerfile)
-[Docker-Compose](https://github.com/AmandaMuniz/Trabalho-Individual-2020-2/blob/master/docker-compose.yml)
+- [Dockerfile API](https://github.com/AmandaMuniz/Trabalho-Individual-2020-2/blob/master/api/Dockerfile)
+- [Dockerfile Client](https://github.com/AmandaMuniz/Trabalho-Individual-2020-2/blob/master/client/Dockerfile)
+- [Docker-Compose](https://github.com/AmandaMuniz/Trabalho-Individual-2020-2/blob/master/docker-compose.yml)
 
 O resultado do build do docker foi:
 
@@ -33,14 +33,15 @@ Além disso, para a utilização de mais métricas foi utilizado o SonarCloud
 ![sonarcloud](https://ibb.co/DGyRmhD)
 
 A relação final de ferramentas utilizadas foi:
-Docker
-Docker-compose
-Github Actions
-Eslint
-SonarPython
-Coverage.py
-CodeClimate
-SonarCloud
+
+- Docker
+- Docker-compose
+- Github Actions
+- Eslint
+- SonarPython
+- Coverage.py
+- CodeClimate
+- SonarCloud
 
 
 
